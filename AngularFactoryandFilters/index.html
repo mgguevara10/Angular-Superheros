@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="mainApp">
+<head>
+    <title></title>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="Content/font-awesome.css" rel="stylesheet" />
+</head>
+<body>
+    {{1+1}}
+    <div ng-controller="CreateController">
+        {{test}}
+        <input type="text" ng-model="superHero.name" placeholder="Enter a super hero" />
+        <input type="text" ng-model="superHero.howAwesome" placeholder="How awesome is the superhero?" />
+        <div class="btn btn-default fa fa-flask" ng-click="addSuperhero()">Add Superhero</div>
+    </div>
+    <div ng-controller="DisplayController">
+        <input type="text" ng-model="search" placeholder="Search" />
+
+        <table class="table-striped table">
+            <tr ng-repeat="hero in heros| orderBy:'name'|filter:search">
+                <td>{{hero.name | uppercase}}</td>
+                <td>{{hero.howAwesome}}</td>
+                <td><button class="btn btn-warning" ng-click="editHero(hero)">Edit
+                    </button></td>
+                <td><button class="btn btn-success" ng-click="deleteHero (hero)">Delete</button></td>
+            </tr>
+        </table>
+        {{factory.value}}
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">{{modal.name}}</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input type="text" ng-model="modal.name"/>
+                        <input type="text" ng-model="modal.howAwesome"/>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary"ng-click="saveHero(modal)"> Save changes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/jquery-1.9.1.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="JavaScript1.js"></script>
+</body>
+</html>
